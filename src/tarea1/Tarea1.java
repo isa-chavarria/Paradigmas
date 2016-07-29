@@ -5,6 +5,7 @@
  */
 package tarea1;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -59,8 +60,9 @@ public class Tarea1 {
     static Dibujito dib;
     static int identificador = 0;
 
-    static public void verificar(String[] vec) {
-
+    static public void verificar(String[] vec) throws IOException  {
+ if (vec== null){
+                System.out.println("Debe ingresar algo en la consola");}
         double x;
         double y;
 
@@ -143,6 +145,7 @@ public class Tarea1 {
                 identificador++;
                 figuras.add(donita);
                 dib.repaint();
+                 System.out.println("El area de la dona es:  " + donita.calcularArea());
                 break;
             case "LISTAR":
                 List(figuras);
@@ -154,8 +157,14 @@ public class Tarea1 {
             case "HELP":
                 System.out.println(ayuda());
                 break;
+            case "LEER":
+             readFile();
+            
+             break;
+     
+ }
         }
-    }
+    
 
     public static String ayuda() {
 
@@ -174,16 +183,17 @@ public class Tarea1 {
                 + "Eliminar 2 -> El # que se agrega corresponde al identificador de cada figura , con este es que se \n"
                 + "podra eliminar la figura.\n"
                 + "\n"
+                + "Un archivo para abrirlo el archivo debe tener el nombre de file.txt  \n"
+                + "\n"
                 + "Help -> Desplega una lista de comandos que seran utiles a la hora de usar la aplicacion.";
         return a;
     }
 
     static void readFile() throws FileNotFoundException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader("file.txt"));
-        try {
+        try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
-
+        
             while (line != null) {
                 sb.append(line);
                 sb.append(System.lineSeparator());
@@ -191,10 +201,9 @@ public class Tarea1 {
                 String vec[] = line.split(" ");
                 vec[0] = vec[0].toUpperCase();
 
-                verificar(vec);
+         verificar(vec);
             }
-        } finally {
-            br.close();
+          
         }
     }
 
@@ -237,13 +246,8 @@ public class Tarea1 {
 
     }
 
-    public static void main(String[] args) {
-        try {
-            // TODO code application logic here
-            readFile();
-        } catch (IOException ex) {
-            Logger.getLogger(Tarea1.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public static void main(String[] args) throws IOException {
+     
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 JFrame frame = new Dibujar();
@@ -257,7 +261,11 @@ public class Tarea1 {
 
             }
         });
-        ReadFromConsole();
+          
+            // TODO code application logic here
+            ReadFromConsole();
+            
+            
     }
 
 }
