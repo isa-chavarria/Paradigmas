@@ -5,6 +5,7 @@
  */
 package tarea1;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
@@ -50,6 +51,7 @@ public class Rectangulo extends Figura {
     public void Dibujar(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         Rectangle2D.Double re = new Rectangle2D.Double(getCoordenada_x(), getCoordenada_y(), getBase(), getaltura());
+        g2.setColor(Color.GREEN);
         g2.draw(re);
     }
 

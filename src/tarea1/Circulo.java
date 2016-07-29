@@ -5,6 +5,7 @@
  */
 package tarea1;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
@@ -45,6 +46,7 @@ public class Circulo extends Figura{
     public void Dibujar(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
       Ellipse2D.Double shape = new Ellipse2D.Double(getCoordenada_x(), getCoordenada_y(), radio, radio);
+      g2.setColor(Color.red);
         g2.draw(shape);
     
     

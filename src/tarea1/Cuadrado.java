@@ -5,6 +5,7 @@
  */
 package tarea1;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
@@ -39,6 +40,7 @@ public class Cuadrado extends Figura{
     public void Dibujar(Graphics g){
       Graphics2D g2 = (Graphics2D) g;
       Rectangle2D.Double re= new Rectangle2D.Double(getCoordenada_x(),getCoordenada_y(),getLongitud_del_lado(),getLongitud_del_lado());
+      g2.setColor(Color.BLUE);
       g2.draw(re);
     
 }
